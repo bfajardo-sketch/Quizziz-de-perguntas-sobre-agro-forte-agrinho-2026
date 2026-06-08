@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Agro Sustentável 🌱</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1b5e20,#66bb6a);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0;
+}
+
+.quiz{
+    background:#fff;
+    width:90%;
+    max-width:600px;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+h1{
+    text-align:center;
+    color:#2e7d32;
+}
+
+.pergunta{
+    margin:20px 0;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#333;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin:8px 0;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#e8f5e9;
+    font-size:1rem;
+    transition:.3s;
+}
+
+button:hover{
+    background:#c8e6c9;
+}
+
+.correta{
+    background:#4caf50 !important;
+    color:white;
+}
+
+.errada{
+    background:#e53935 !important;
+    color:white;
+}
+
+#resultado{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+    font-size:1.1rem;
+}
+</style>
+</head>
+<body>
+
+<div class="quiz">
+    <h1>🌱 Quiz Agro Sustentável</h1>
+
+    <div class="pergunta">
+        Qual prática agrícola ajuda a reduzir a erosão do solo e conservar a umidade?
+    </div>
+
+    <button onclick="responder(this,false)">Queimada da vegetação</button>
+    <button onclick="responder(this,true)">Plantio direto</button>
+    <button onclick="responder(this,false)">Desmatamento de áreas de proteção</button>
+    <button onclick="responder(this,false)">Uso excessivo de defensivos</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+function responder(botao, correta){
+
+    const botoes = document.querySelectorAll("button");
+
+    botoes.forEach(btn => btn.disabled = true);
+
+    const resultado = document.getElementById("resultado");
+
+    if(correta){
+        botao.classList.add("correta");
+        resultado.innerHTML =
+        "✅ Correto! O plantio direto reduz a erosão, preserva a umidade e melhora a saúde do solo.";
+    }else{
+        botao.classList.add("errada");
+
+        botoes.forEach(btn=>{
+            if(btn.textContent === "Plantio direto"){
+                btn.classList.add("correta");
+            }
+        });
+
+        resultado.innerHTML =
+        "❌ Incorreto. O plantio direto é uma das principais práticas da agricultura sustentável.";
+    }
+}
+</script>
+
+</body>
+</html>
